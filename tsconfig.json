@@ -14,9 +14,8 @@
       "@events/*": ["src/events/*"],
       "@middlewares/*": ["src/middlewares/*"],
       "@models/*": ["src/models/*"],
-      "@routers/*": ["src/routers/*"],
+      "@routes/*": ["src/routes/*"],
       "@shared/*": ["src/shared/*"],
-      "@types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],
       "@services/*": ["src/services/*"]
     }

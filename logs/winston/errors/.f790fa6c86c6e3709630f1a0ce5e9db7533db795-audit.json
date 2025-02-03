@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/mir/dev/projects/footlove_backend/logs/winston/errors/.f790fa6c86c6e3709630f1a0ce5e9db7533db795-audit.json",
+    "files": [
+        {
+            "date": 1738609406393,
+            "name": "/home/mir/dev/projects/footlove_backend/logs/winston/errors/um-2025-02-04-01-error.log",
+            "hash": "155b964ff963ebce127cce35fc4e072435652bbfc98d78ba93702a7d8247443c"
+        }
+    ],
+    "hashType": "sha256"
+}
