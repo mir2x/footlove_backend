@@ -9,6 +9,16 @@
             "date": 1738609406393,
             "name": "/home/mir/dev/projects/footlove_backend/logs/winston/errors/um-2025-02-04-01-error.log",
             "hash": "155b964ff963ebce127cce35fc4e072435652bbfc98d78ba93702a7d8247443c"
+        },
+        {
+            "date": 1739099280599,
+            "name": "/home/mir/dev/projects/footlove_backend/logs/winston/errors/um-2025-02-09-17-error.log",
+            "hash": "305243725b55896c5e12c1e2fa7b9a47d8f2be1e98d8cf2ee98ad00062bd3a43"
+        },
+        {
+            "date": 1739102443548,
+            "name": "/home/mir/dev/projects/footlove_backend/logs/winston/errors/um-2025-02-09-18-error.log",
+            "hash": "45d8a1397a34b2460afb3ead741b8e12e9ea58f3f41ea54191bdeb0595cb4c49"
         }
     ],
     "hashType": "sha256"

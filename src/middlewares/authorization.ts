@@ -4,11 +4,10 @@ import { NextFunction, Request, Response } from "express";
 import createError from "http-errors";
 
 import Auth from "@models/authModel";
-import User from "@models/userModel";
+import User, { DecodedUser } from "@models/userModel";
 
 import { Role } from "@shared/enums";
 import { decodeToken } from "@utils/jwt";
-import { DecodedUser } from "@schemas/decodedUser";
 import { StatusCodes } from "http-status-codes";
 
 export const getUserInfo = async (authId: string): Promise<DecodedUser | null> => {
@@ -47,9 +46,7 @@ const authorizeToken = (secret: string, errorMessage: string) => {
     const data = await getUserInfo(decoded.id);
     if (!data) return next(createError(StatusCodes.NOT_FOUND, "Account Not Found"));
 
-    if (data.isBlocked) return next(createError(StatusCodes.FORBIDDEN, "You are blocked"));
     req.user = data;
-
     return next();
   };
 };
@@ -64,5 +61,5 @@ const hasAccess = (roles: Role[]) => {
 };
 
 export const authorize = authorizeToken(process.env.JWT_ACCESS_SECRET!, "Invalid Access Token");
-export const refreshAuthorize = authorizeToken(process.env.JWT_REFRESH_SECRET!, "Invalid Refresh Token");
-export const recoveryAuthorize = authorizeToken(process.env.JWT_RECOVERY_SECRET!, "Invalid Recovery Token");
+export const isSeller = hasAccess([Role.SELLER]);
+export const isBuyer = hasAccess([Role.BUYER]);

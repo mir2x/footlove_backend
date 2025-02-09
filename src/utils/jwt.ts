@@ -1,8 +1,11 @@
 import jwt, { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
 import createError from "http-errors";
 
-export const generateToken = (id: string, secret: string, duration: string): string =>
-  jwt.sign({ id }, secret, { expiresIn: duration });
+type Decoded = {
+  id: string;
+};
+
+export const generateToken = (id: string, secret: string): string => jwt.sign({ id: id }, secret, { expiresIn: "92h" });
 
 export const decodeToken = (token: string, secret: string): [Error | null, Decoded | null] => {
   let decoded: Decoded | null = null;

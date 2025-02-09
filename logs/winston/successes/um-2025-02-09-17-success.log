@@ -1,0 +1,74 @@
+Sun Feb 09 2025 17:15:30 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:15:30 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:20:34 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:20:34 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:20:36 [Podlove] [31merror[39m: data and salt arguments required
+Error: data and salt arguments required
+    at Object.hash (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/bcrypt@5.1.1/node_modules/bcrypt/bcrypt.js:137:17)
+    at /home/mir/dev/projects/footlove_backend/node_modules/.pnpm/bcrypt@5.1.1/node_modules/bcrypt/promises.js:29:12
+    at new Promise (<anonymous>)
+    at Object.module.exports.promise (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/bcrypt@5.1.1/node_modules/bcrypt/promises.js:20:12)
+    at Object.hash (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/bcrypt@5.1.1/node_modules/bcrypt/bcrypt.js:133:25)
+    at register (/home/mir/dev/projects/footlove_backend/src/controllers/authController.ts:17:45)
+    at Layer.handle [as handle_request] (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/express@4.21.2/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/express@4.21.2/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/express@4.21.2/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/express@4.21.2/node_modules/express/lib/router/layer.js:95:5)
+Error
+Sun Feb 09 2025 17:21:35 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:21:35 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:21:38 [Podlove] [31merror[39m: data and salt arguments required
+Error: data and salt arguments required
+    at Object.hash (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/bcrypt@5.1.1/node_modules/bcrypt/bcrypt.js:137:17)
+    at /home/mir/dev/projects/footlove_backend/node_modules/.pnpm/bcrypt@5.1.1/node_modules/bcrypt/promises.js:29:12
+    at new Promise (<anonymous>)
+    at Object.module.exports.promise (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/bcrypt@5.1.1/node_modules/bcrypt/promises.js:20:12)
+    at Object.hash (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/bcrypt@5.1.1/node_modules/bcrypt/bcrypt.js:133:25)
+    at register (/home/mir/dev/projects/footlove_backend/src/controllers/authController.ts:19:45)
+    at Layer.handle [as handle_request] (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/express@4.21.2/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/express@4.21.2/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/express@4.21.2/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/express@4.21.2/node_modules/express/lib/router/layer.js:95:5)
+Error
+Sun Feb 09 2025 17:25:35 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:25:35 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:25:38 [Podlove] [31merror[39m: Auth validation failed: role: Path `role` is required.
+ValidationError: Auth validation failed: role: Path `role` is required.
+    at model.Document.invalidate (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/mongoose@8.9.6/node_modules/mongoose/lib/document.js:3334:32)
+    at /home/mir/dev/projects/footlove_backend/node_modules/.pnpm/mongoose@8.9.6/node_modules/mongoose/lib/document.js:3095:17
+    at /home/mir/dev/projects/footlove_backend/node_modules/.pnpm/mongoose@8.9.6/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+ValidationError
+Sun Feb 09 2025 17:26:30 [Podlove] [31merror[39m: Auth validation failed: role: Path `role` is required.
+ValidationError: Auth validation failed: role: Path `role` is required.
+    at model.Document.invalidate (/home/mir/dev/projects/footlove_backend/node_modules/.pnpm/mongoose@8.9.6/node_modules/mongoose/lib/document.js:3334:32)
+    at /home/mir/dev/projects/footlove_backend/node_modules/.pnpm/mongoose@8.9.6/node_modules/mongoose/lib/document.js:3095:17
+    at /home/mir/dev/projects/footlove_backend/node_modules/.pnpm/mongoose@8.9.6/node_modules/mongoose/lib/schemaType.js:1407:9
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+ValidationError
+Sun Feb 09 2025 17:26:47 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:26:47 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:28:16 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:28:16 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:28:20 [Podlove] [31merror[39m: Verification OTP has expired.
+UnauthorizedError: Verification OTP has expired.
+    at activate (/home/mir/dev/projects/footlove_backend/src/controllers/authController.ts:99:28)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+UnauthorizedError
+Sun Feb 09 2025 17:29:49 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:29:49 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:31:8 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:31:8 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:31:11 [Podlove] [31merror[39m: Verification OTP has expired.
+UnauthorizedError: Verification OTP has expired.
+    at activate (/home/mir/dev/projects/footlove_backend/src/controllers/authController.ts:99:28)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+UnauthorizedError
+Sun Feb 09 2025 17:33:24 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:33:24 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:43:14 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:43:14 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:50:29 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:50:29 [Podlove] [32minfo[39m: Server is running at PORT: 7001
+Sun Feb 09 2025 17:51:34 [Podlove] [32minfo[39m: Successfully Connected to MongoDB Atlas
+Sun Feb 09 2025 17:51:34 [Podlove] [32minfo[39m: Server is running at PORT: 7001

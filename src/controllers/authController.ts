@@ -11,10 +11,12 @@ import sendEmail from "@utils/sendEmail";
 import generateOTP from "@utils/generateOTP";
 
 const register = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-  const { name, email, phoneNumber, password, confirmPassword } = req.body;
-  let error, auth, user;
+  const { userName, email, role, password, confirmPassword } = req.body;
+  let error, auth, user, hashedPassword;
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  [error, hashedPassword] = await to(bcrypt.hash(password, 10));
+  if (error) return next(error);
+
   const verificationOTP = generateOTP();
   const verificationOTPExpiredAt = new Date(Date.now() + 30 * 60 * 1000);
 
@@ -35,6 +37,7 @@ const register = async (req: Request, res: Response, next: NextFunction): Promis
         [
           {
             email,
+            role,
             password: hashedPassword,
             verificationOTP,
             verificationOTPExpiredAt,
@@ -54,8 +57,7 @@ const register = async (req: Request, res: Response, next: NextFunction): Promis
         [
           {
             auth: auth._id,
-            name,
-            phoneNumber,
+            userName,
           },
         ],
         { session }
@@ -112,18 +114,12 @@ const activate = async (req: Request, res: Response, next: NextFunction): Promis
   if (!accessSecret) {
     return next(createError(StatusCodes.INTERNAL_SERVER_ERROR, "Unexpected server error."));
   }
-  const accessToken = generateToken(auth._id!.toString(), accessSecret, "96h");
-
-  [error, user] = await to(User.findOne({ auth: auth._id }));
-  if (error) return next(error);
-  if (!user) {
-    return next(createError(StatusCodes.NOT_FOUND, "User not found."));
-  }
+  const accessToken = generateToken(auth._id!.toString(), accessSecret);
 
   return res.status(StatusCodes.OK).json({
     success: true,
     message: "Account successfully verified.",
-    data: { accessToken, auth, user },
+    data: { accessToken },
   });
 };
 
@@ -142,18 +138,13 @@ const login = async (req: Request, res: Response, next: NextFunction): Promise<a
   if (!auth.isVerified) return next(createError(StatusCodes.UNAUTHORIZED, "Verify your email first"));
 
   const accessSecret = process.env.JWT_ACCESS_SECRET;
-  const refreshSecret = process.env.JWT_REFRESH_SECRET;
-  if (!accessSecret || !refreshSecret)
-    return next(createError(StatusCodes.INTERNAL_SERVER_ERROR, "JWT secret is not defined."));
-
-  const accessToken = generateToken(auth._id!.toString(), accessSecret, "96h");
-  const refreshToken = generateToken(auth._id!.toString(), refreshSecret, "96h");
+  const accessToken = generateToken(auth._id!.toString(), accessSecret!);
 
   const user = await User.findOne({ auth: auth._id });
   return res.status(StatusCodes.OK).json({
     success: true,
     message: "Login successful",
-    data: { accessToken, refreshToken, auth, user },
+    data: { accessToken },
   });
 };
 
@@ -194,7 +185,6 @@ const resendOTP = async (req: Request, res: Response, next: NextFunction): Promi
     .json({ success: true, message: "OTP resend successful", data: { verificationOTP, recoveryOTP } });
 };
 
-
 const recovery = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   const { email } = req.body;
 
@@ -209,7 +199,9 @@ const recovery = async (req: Request, res: Response, next: NextFunction): Promis
 
   await sendEmail(email, recoveryOTP);
 
-  return res.status(StatusCodes.OK).json({ success: true, message: "Success", data: {} });
+  return res
+    .status(StatusCodes.OK)
+    .json({ success: true, message: "Success", data: { recoveryOTP: auth.recoveryOTP } });
 };
 
 const recoveryVerification = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
@@ -224,12 +216,8 @@ const recoveryVerification = async (req: Request, res: Response, next: NextFunct
   if (error) return next(error);
   if (!auth) return next(createError(StatusCodes.NOT_FOUND, "User not found"));
 
-  if (!auth.recoveryOTP || !auth.recoveryOTPExpiredAt) {
-    return next(createError(StatusCodes.UNAUTHORIZED, "Recovery OTP is not set or has expired."));
-  }
-
   const currentTime = new Date();
-  if (currentTime > auth.recoveryOTPExpiredAt) {
+  if (auth.recoveryOTPExpiredAt && currentTime > auth.recoveryOTPExpiredAt) {
     return next(createError(StatusCodes.UNAUTHORIZED, "Recovery OTP has expired."));
   }
 
@@ -239,29 +227,20 @@ const recoveryVerification = async (req: Request, res: Response, next: NextFunct
 
   auth.recoveryOTP = "";
   auth.recoveryOTPExpiredAt = null;
-
   [error] = await to(auth.save());
   if (error) return next(error);
-
-  const recoverySecret = process.env.JWT_RECOVERY_SECRET;
-  if (!recoverySecret) {
-    return next(createError(StatusCodes.INTERNAL_SERVER_ERROR, "JWT secret is not defined."));
-  }
-  const recoveryToken = generateToken(auth._id!.toString(), recoverySecret, "96h");
 
   return res.status(StatusCodes.OK).json({
     success: true,
     message: "Email successfully verified.",
-    data: recoveryToken,
+    data: {},
   });
 };
 
 const resetPassword = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-  const user = req.user;
+  const { email, password, confirmPassword } = req.body;
 
-  const { password, confirmPassword } = req.body;
-
-  const [error, auth] = await to(Auth.findOne({ email: user.email }));
+  const [error, auth] = await to(Auth.findOne({ email: email }));
   if (error) return next(error);
   if (!auth) return next(createError(StatusCodes.NOT_FOUND, "User Not Found"));
 

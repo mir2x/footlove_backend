@@ -1,4 +1,5 @@
 import createError from "http-errors";
+import StatusCodes from "http-status-codes";
 import { Request, Response, NextFunction } from "express";
 import { logger } from "@shared/logger";
 

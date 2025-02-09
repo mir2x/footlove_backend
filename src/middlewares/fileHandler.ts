@@ -13,40 +13,32 @@ const uploadFileToCloudinary = async (file: UploadedFile, folder: string): Promi
 };
 
 export const fileHandler = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-  console.log("entered");
-
   try {
     const fileFields = [
-      { fieldName: "avatar", folder: "the_drop/profile", key: "avatarUrl" },
-      { fieldName: "licensePhoto", folder: "the_drop/licensePhoto", key: "licenseUrl" },
-      { fieldName: "categoryImage", folder: "the_drop/category", key: "categoryImageUrl" },
-      { fieldName: "subcategoryImage", folder: "the_drop/subcategory", key: "subcategoryImageUrl" },
-      { fieldName: "cover", folder: "the_drop/cover", key: "coverUrl" },
-      { fieldName: "gallery", folder: "the_drop/gallery", key: "galleryUrls" },
+      { fieldName: "avatarImage", folder: "footlove/profile", key: "avatar" },
+      { fieldName: "coverImage", folder: "footlove/cover", key: "cover" },
+      { fieldName: "content[contentImage]", folder: "footlove/content", key: "url" },
+      { fieldName: "content[contentVideo]", folder: "footlove/content", key: "url" },
     ];
-    console.log(req.files);
-    
+
     if (req.files) {
       await Promise.all(
         fileFields.map(async ({ fieldName, folder, key }) => {
-          const file = req.files[fieldName];
-          console.log(file);
-
-          if (file) {
-            if (Array.isArray(file)) {
-              const fileUrls = await Promise.all(
-                file.map(async (fileItem: UploadedFile) => await uploadFileToCloudinary(fileItem, folder))
-              );
-              req.body[key] = fileUrls;
-            } else {
+          if (fieldName == "content[contentImage]" || fieldName == "content[contentVideo]") {
+            const file = req.files[fieldName];
+            if (file) {
               const fileUrl = await uploadFileToCloudinary(file as UploadedFile, folder);
-              req.body[key] = fileUrl;
+              req.body.content[key] = fileUrl;
             }
+          }
+          const file = req.files[fieldName];
+          if (file) {
+            const fileUrl = await uploadFileToCloudinary(file as UploadedFile, folder);
+            req.body[key] = fileUrl;
           }
         })
       );
     }
-
     next();
   } catch (error: any) {
     next(createError(StatusCodes.BAD_REQUEST, error.message));

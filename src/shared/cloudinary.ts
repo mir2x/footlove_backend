@@ -9,9 +9,10 @@ cloudinary.config({
 
 const upload = (file: UploadedFile, location: string): Promise<string> => {
   return new Promise<string>((resolve, reject) => {
-    const resourceType: "image" | "video" | "raw" | "auto" = file.mimetype.startsWith("image/")
+    const resourceType: "image" | "video" | "raw" | "auto" =
+      file.mimetype.startsWith("image/")
       ? "image"
-      : file.mimetype.startsWith("audio/") || file.mimetype.startsWith("video/")
+      : file.mimetype.startsWith("video/")
       ? "video"
       : "auto";
 

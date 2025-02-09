@@ -3,6 +3,10 @@ export enum Role {
   SELLER = "SELLER",
 }
 
+export enum ContentType{
+  FREE = "FREE",
+  PAID = "PAID",
+}
 export enum Gender {
   MALE = "Male",
   FEMALE = "Female",
