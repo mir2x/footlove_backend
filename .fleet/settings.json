@@ -1,0 +1,16 @@
+{
+    "plugins": [
+        {
+            "type": "add",
+            "pluginName": "fleet.javascript"
+        },
+        {
+            "type": "add",
+            "pluginName": "fleet.prettier"
+        },
+        {
+            "type": "add",
+            "pluginName": "fleet.intellij"
+        }
+    ]
+}

@@ -24,6 +24,12 @@ export enum SubscriptionStatus {
   DUE = "DUE",
 }
 
+export enum MessageStatus {
+  SENT = "SENT",
+  DELIVERED = "DELIVERED",
+  SEEN = "SEEN"
+}
+
 export enum Months {
   JANUARY = "JANUARY",
   FEBRUARY = "FEBRUARY",
