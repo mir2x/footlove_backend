@@ -6,6 +6,7 @@ import fileHandler from "@middlewares/fileHandler";
 
 const router = express.Router();
 
+router.get("/", authorize, UserController.get);
 router.patch("/update", fileUpload(), fileHandler, authorize, UserController.update);
 
 export default router;
