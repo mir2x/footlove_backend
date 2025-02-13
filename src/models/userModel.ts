@@ -18,7 +18,7 @@ export type UserSchema = Document & {
   bio: string;
   dateOfBirth: {
     day: number;
-    month: Months;
+    month: number;
     year: number;
   };
   footsize: number;
@@ -61,8 +61,7 @@ const userSchema = new Schema(
         type: Number,
       },
       month: {
-        type: String,
-        enum: Object.values(Months),
+        type: Number,
       },
       year: {
         type: Number,

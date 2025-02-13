@@ -22,6 +22,10 @@ const update = async (req: Request, res: Response, next: NextFunction): Promise<
     updates.dateOfBirth.day = Number(updates.dateOfBirth.day);
   }
 
+  if (updates.dateOfBirth && updates.dateOfBirth.month) {
+    updates.dateOfBirth.month = Number(updates.dateOfBirth.month);
+  }
+  
   if (updates.dateOfBirth && updates.dateOfBirth.year) {
     updates.dateOfBirth.year = Number(updates.dateOfBirth.year);
   }
