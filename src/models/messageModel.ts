@@ -3,9 +3,10 @@ import { MessageStatus } from "@shared/enums";
 
 export type MessageSchema = Document & {
     sender: Types.ObjectId;
-    receiver: Types.ObjectId;
     text: string;
+    file: string;
     status: MessageStatus;
+    timestamp: Date;
 }
 
 const messageSchema = new Schema<MessageSchema>({
@@ -14,20 +15,23 @@ const messageSchema = new Schema<MessageSchema>({
         ref: "User",
         required: true,
     },
-    receiver : {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
     text : {
         type: String,
         required: true,
+    },
+    file: {
+        type: String,
+        default: "",
     },
     status: {
        type: String,
        enum: Object.values(MessageStatus),
        default: MessageStatus.SENT,
     },
+    timestamp: {
+        type: Date,
+        default: Date.now(),
+    }
 });
 
 const Message = model<MessageSchema>("Message", messageSchema);
