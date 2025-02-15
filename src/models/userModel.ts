@@ -26,14 +26,11 @@ export type UserSchema = Document & {
   gender: Gender;
   interests: string[];
   coin: number;
-  content: {
-    type: ContentType;
-    url: string;
-    price: number;
-  };
+  contents: Types.ObjectId[];
+  
 };
 
-const userSchema = new Schema(
+const userSchema = new Schema<UserSchema>(
   {
     auth: {
       type: Schema.Types.ObjectId,
@@ -84,18 +81,10 @@ const userSchema = new Schema(
       type: Number,
       default: 0,
     },
-    content: {
-      type: {
-        type: String,
-        enum: Object.values(ContentType),
-      },
-      url: {
-        type: String,
-      },
-      price: {
-        type: Number,
-      },
-    },
+    contents: [{
+      type: Schema.Types.ObjectId,
+      ref: "Content",
+    }],
   },
   {
     timestamps: true,

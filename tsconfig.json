@@ -22,5 +22,5 @@
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"],
-  "files": ["src/express.d.ts"]
+  "files": ["src/express.d.ts", "src/socket.d.ts"]
 }

@@ -1,7 +1,7 @@
 import jwt, { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
 import createError from "http-errors";
 
-type Decoded = {
+export type Decoded = {
   id: string;
 };
 

@@ -7,6 +7,12 @@ export enum ContentType{
   FREE = "FREE",
   PAID = "PAID",
 }
+
+export enum FileType{
+  IMAGE = "IMAGE",
+  VIDEO = "VIDEO",
+}
+
 export enum Gender {
   MALE = "Male",
   FEMALE = "Female",

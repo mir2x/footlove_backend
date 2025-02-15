@@ -7,6 +7,7 @@ import UserRoutes from "@routes/userRoutes";
 import FaqRoutes from "@routes/faqRoutes";
 import TaCRoutes from "@routes/tacRoutes";
 import PrivacyRoutes from "@routes/privacyRoutes";
+import ContentRoutes from "@routes/contentRoutes";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use("/user", UserRoutes);
 app.use("/faq", FaqRoutes);
 app.use("/tac", TaCRoutes);
 app.use("/privacy", PrivacyRoutes);
+app.use("/content", ContentRoutes);
 
 app.use(notFound);
 

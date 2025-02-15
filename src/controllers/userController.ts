@@ -8,7 +8,7 @@ import Cloudinary from "@shared/cloudinary";
 const get = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   const userId = req.user.userId;
   let error, user;
-  [error, user] = await to(User.findById(userId).populate({ path: "auth", select: "email" }));
+  [error, user] = await to(User.findById(userId).populate({ path: "auth", select: "email" }).populate({path: "content"}).lean());
   if (error) return next(error);
   if (!user) return next(createError(StatusCodes.NOT_FOUND, "User not found."));
   return res.status(StatusCodes.OK).json({ success: true, message: "User data retrieved successfully.", data: user });
