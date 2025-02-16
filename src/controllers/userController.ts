@@ -53,8 +53,9 @@ const getAll = async (req: Request, res: Response, next: NextFunction): Promise<
 
     return res.status(StatusCodes.OK).json({
       success: true,
+      message: "Success",
       data: users,
-      meta: {
+      pagination: {
         page,
         limit,
         total,
