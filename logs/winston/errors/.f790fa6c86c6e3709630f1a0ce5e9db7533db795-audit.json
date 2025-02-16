@@ -19,6 +19,11 @@
             "date": 1739102443548,
             "name": "/home/mir/dev/projects/footlove_backend/logs/winston/errors/um-2025-02-09-18-error.log",
             "hash": "45d8a1397a34b2460afb3ead741b8e12e9ea58f3f41ea54191bdeb0595cb4c49"
+        },
+        {
+            "date": 1739677110347,
+            "name": "/home/mir/dev/projects/footlove_backend/logs/winston/errors/um-2025-02-16-09-error.log",
+            "hash": "e04545d43aa62e5da1ef5ba2fb24152cf1cdf9cc32af793da1b64bc5d6664583"
         }
     ],
     "hashType": "sha256"

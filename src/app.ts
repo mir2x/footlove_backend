@@ -28,12 +28,13 @@ app.use("/tac", TaCRoutes);
 app.use("/privacy", PrivacyRoutes);
 app.use("/content", ContentRoutes);
 
-app.use(notFound);
+
 
 app.use("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("Hello From Podlove");
+  res.send("Hello From Footlove");
 });
 
+app.use("/**", notFound);
 app.use(errorHandler);
 
 export default app;
